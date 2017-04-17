@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minimal jQuery Template</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js" charset="utf-8"></script>
+
+  <!-- Add a script template -->
+  <script type="text/template" id="template">
+    Hello World, my name is Scott, and I am 33 years old.
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    // Target the div and append the script's content
+    $('#app').append($('#template').html())
+  </script>
+
+</body>
+</html>

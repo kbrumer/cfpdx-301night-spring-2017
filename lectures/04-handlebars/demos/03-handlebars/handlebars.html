@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Handlebars Template</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+  <script id="template" type="text/x-handlebars-template">
+    <!-- Review the syntax -->
+    <section>
+      <p>{{ title }}</p>
+      <ul>
+        <li>{{ name }}</li>
+        <li>{{ age }}</li>
+        <li>{{{ favorite }}}</li>
+      </ul>
+    </section>
+  </script>
+
+</head>
+<body>
+  <div id="results"></div>
+  <script type="text/javascript">
+    var myobj = {
+      name: 'Scott',
+      title: 'Beard.js',
+      age: 33,
+      favorite: '<h1>Jingle-beard</h1>'
+    }
+
+    // var template = $('#template').html()
+    // var compile = Handlebars.compile(template)
+    // var newDOM = compile(myobj)
+    // $('#results').append(newDOM)
+
+    // shorthand syntax for the commented code above
+    var compile = Handlebars.compile($('#template').html())
+    $('#results').append(compile(myobj))
+
+    // create a data object
+    // Grab the template
+    // Compile the template
+    // Append the results to the DOM
+  </script>
+</body>
+</html>
