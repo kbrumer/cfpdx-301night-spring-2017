@@ -44,7 +44,8 @@ body {
 desktop only
 */
 
-@media all and (min-width: 420px) {
+
+@media all and (max-width: 420px) {
   .container {
     max-width: 538px;
   }
@@ -59,3 +60,4 @@ desktop only
     width: 29.3680297%;
   }
 }
+
