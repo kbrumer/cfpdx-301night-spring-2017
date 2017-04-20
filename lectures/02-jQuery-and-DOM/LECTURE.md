@@ -52,9 +52,13 @@ git push origin <branch>
 
 
 # Demo
+
+### Demos
+* [From the book](file:////Work/github.com/kbrumer/cfpdx-301night-spring-2017/lectures/02-jQuery-and-DOM/demos/c0)
+
+
 ### Useful Links
 * [jQuery cheatsheet](https://oscarotero.com/jquery/), and how to use $(‘selector’).method(args)
-
 
 ### Project setup:
 * In the chrome web inspector demo
