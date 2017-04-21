@@ -1,12 +1,14 @@
 # Announcements - Wed Apr 19th
 
-## Code 301: jQuery and the DOM (3rd Class)
+## Code 301: jQuery and the DOM - Lecture (3rd Class)
 
 ### Get your reviews in
 
 ### Assignments for this Week
 
-* None (yet)
+* Read: Handlebars and SMACSS Links [301 N&W - Spring 2017]
+* Read: Shay Howe's Intro and Dale Sande's Intro [301 N&W - Spring 2017]
+* Read: JS & jQ 293-325 [301 N&W - Spring 2017]
 
 # Review
 
@@ -24,7 +26,7 @@ git add .
 git commit -m "<my awesome commit message here>"
 git push origin <branch>
 ```
-* When finished, go into Github and create a PR from your brnach to `master`
+* When finished, go into Github and create a PR from your branch to `master`
 
 ### node && npm
 
