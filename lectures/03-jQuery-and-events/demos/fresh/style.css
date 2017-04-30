@@ -1,0 +1,28 @@
+.green-square {
+	height: 50px;
+	width: 50px;
+	margin: 10px;
+	background: green;
+}
+
+.blue-square {
+	height: 50px;
+	width: 50px;
+	margin: 10px;
+	background: blue;
+}
+
+.yellow-square {
+	height: 50px;
+	width: 50px;
+	margin: 10px;
+	background: #ffff00;
+}
+
+.violet {
+	background-color: violet;
+}
+
+.red {
+	background-color: red;
+}

@@ -9,7 +9,7 @@
   <script id="template" type="text/x-handlebars-template">
     <!-- Review the syntax -->
     <section>
-      <p>{{ title }}</p>
+      <p>{{ notTitle }}</p>
       <ul>
         <li>{{ name }}</li>
         <li>{{ age }}</li>
@@ -26,17 +26,33 @@
       name: 'Scott',
       title: 'Beard.js',
       age: 33,
-      favorite: '<h1>Jingle-beard</h1>'
-    }
+      favorite: '<h1>Jingle-beard</h1>',
+    };
 
-    // var template = $('#template').html()
-    // var compile = Handlebars.compile(template)
-    // var newDOM = compile(myobj)
-    // $('#results').append(newDOM)
+    var anotherObj = {
+      name: 'Fred',
+      notTitle: 'Fred Title',
+      age: 36,
+      favorite: '<h3>The Atlantic</h3>'
+    };
+
+
+    // ok
+    var template = $('#template').html();
+    
+
+    var fn1 = Handlebars.compile(template);
+    var newDOM1 = fn1(myobj);
+    var newDOM2 = fn1(anotherObj);
+
+    
+    // ok
+    $('#results').append(newDOM1);
+    $('#results').append(newDOM2);
 
     // shorthand syntax for the commented code above
-    var compile = Handlebars.compile($('#template').html())
-    $('#results').append(compile(myobj))
+    // var compile = Handlebars.compile($('#template').html())
+    // $('#results').append(compile(myobj))
 
     // create a data object
     // Grab the template

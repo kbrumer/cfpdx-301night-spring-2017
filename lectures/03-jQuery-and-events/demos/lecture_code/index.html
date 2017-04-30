@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Events</h1>
+
+  <!-- Example #1 -->
+  <section id="section-1">
+    <h2>Event: <code>.click()</code></h2>
+    <button id="example-1">Example Button #1</button>
+    <br>
+    <h3>Toggle Class on hover</h3>
+    <div class="green-square"></div>
+    <br>
+    <h3>Toggle Class on Click Event</h3>
+    <div class="yellow-square"></div>
+    <br>
+    <h3>Two events on one element</h3>
+    <div class="blue-square"></div>
+    <br>
+  </section>
+
+  <!-- Example #2 -->
+  <section>
+    <h2>Event: <code>.change()</code></h2>
+    <select id="drop-down">
+      <option value="">Select a Hero</option>
+      <option value="Murray" data-attribute="Murray">Murray</option>
+      <option value="Cage" data-attribute="Cage">Cage</option>
+      <option value="Segal" data-attribute="Segal">Segal</option>
+   </select>
+   <div>
+    <img class="example-2" src="http://fillmurray.com/300/400" alt="Murray">
+    <img class="example-2" src="http://www.placecage.com/300/400" alt="Cage">
+    <img class="example-2" src="http://stevensegallery.com/300/400" alt="Segal">
+    </div>
+  </section>
+
+  <!-- Example #3 -->
+  <section id="dynamic">
+    <h2>Event: <code>.click()</code> revisited</h2>
+    <ul>
+      <li class="hero" data-stuff="murray">        
+        <a href="#dynamic">Murray</a>
+      </li>
+      <li class="hero" data-stuff="cage">
+        <a href="#dynamic">Cage</a>
+      </li>
+    </ul>
+    <div id="murray" class="dynamic-content">
+      <img src="http://fillmurray.com/g/200/300" alt="Murray">
+    </div>
+    <div id="cage" class="dynamic-content">
+      <img src="http://www.placecage.com/g/200/300" alt="Cage">
+    </div>
+  </section>
+
+
+  <!-- Example #4 Prevent Default -->
+  <section id="event-bubbling">
+    <h2>Event: <code>.preventingDefault()</code></h2>
+
+    <!-- Example #4-1 Link -->
+    <div id="cool-image">
+      <a class="myLink" href="http://www.google.com">
+        <img src="http://fillmurray.com/100/100" alt="Suave Murray" class="coolMurray">
+      </a>
+    </div>
+
+    <!-- Example #4-2 Input -->
+    <div>
+      <p>Please enter your name using lowercase letters only.</p> 
+        <form> 
+            <input type="text" id="my-textbox" /> 
+        </form> 
+    </div>
+
+  </section>
+
+  
+
+  <!-- Add jQuery at the end of the body but before any scripts that rely on it -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  
+
+  <!-- Our main javascript file -->
+  <script src="main.js"></script>
+</body>
+</html>

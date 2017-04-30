@@ -1,6 +1,8 @@
 //nav handler
 $('nav a').on('click', function() {
-  var $whereToGo = $(this).data('tab') //gives us 'delegation' or 'attributes'
+  //gives us 'delegation' or 'attributes'
+  var $whereToGo = $(this).attr('data-tab') 
+  console.log('whereToGo >>' + $whereToGo  + '<<');
   $('.tab-content').hide()
   //we want $('#delegation')
   $('#' + $whereToGo).fadeIn(750)
@@ -12,11 +14,13 @@ function logTarget() {
   console.log($(this));
 
   var $target = $(this).text();
-  var $newFeedback = $('#feedback p:first-child').clone();
+  var $newFeedback = $('#feedback section:first-child').clone();
+  $newFeedback.find('ul li').text('You clicked on ' + $target);
 
-  $newFeedback.text('You clicked on ' + $target);
+  //$newFeedback.text('You clicked on ' + $target);
   $('#feedback').append($newFeedback);
 }
+
 
 //not delegated - event bound to all the 'li's
 //no selector specified in .on() method
@@ -41,6 +45,7 @@ $('button[name=adder2]').on('click', function() {
 
 $('button[name=clear]').on('click', function() {
   $('.log-item:first').siblings().remove();
+  //$('.log-item').remove();
 });
 
 //checkbox handler - change event.
@@ -55,6 +60,7 @@ $('input[name=check]').on('change', function() {
 //select box filtering
 $('select[name="icecream"]').on('change', function() {
   var $selection = $(this).val();
+  console.log('selection=', $selection);
   $('img').hide()
   $('img[data-flavor="' + $selection + '"]').show()
 })
