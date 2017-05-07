@@ -4,7 +4,12 @@ $(document).ready(function(){
 	console.log('outside this', this);
 
 	// Events
+	$('#my-textbox').change(function(){
+		console.log('the value is', $(this).val());
+	});
+
 	$('#example-1').on('click', function(e) {
+		$(this).val();
 		console.log('e', e);
 		console.log('inside this', this);
 		console.log('Button Clicked');
@@ -62,6 +67,7 @@ $(document).ready(function(){
 	// Example #3 - Dynamic rendering with jQuery
 	$('#dynamic .hero').on('click', function() {
 		var liDataStuff = $(this).attr('data-stuff');
+		console.log('liDataStuff=', liDataStuff);
 		var selectedListItem = $('#'+liDataStuff);
 
 		$('div.dynamic-content').hide();
