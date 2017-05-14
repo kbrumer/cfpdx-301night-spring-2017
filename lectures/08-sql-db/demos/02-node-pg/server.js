@@ -7,7 +7,8 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // Set up the client connection to the DB
-const connectionString = 'postgres://localhost:5432/demos'
+//const connectionString = 'postgres://postgres:db#2700@localhost:5432/simpsons'
+const connectionString = 'postgres://postgres:db%232700@localhost:5432/simpsons';
 const client = new pg.Client(connectionString)
 client.connect()
 
@@ -32,6 +33,7 @@ app.get('/db/person', function(request, response) {
 })
 
 app.post('/db/person', function(request, response) {
+  console.log('posting');
   client.query(`
     INSERT INTO persons(name, age, ninja)
     VALUES($1, $2, $3);
@@ -39,11 +41,12 @@ app.post('/db/person', function(request, response) {
     [
       request.body.name,
       request.body.age,
-      request.body.ninja,
+      request.body.ninja
     ]
   )
   .then(function(data) {
-    response.redirect('/')
+  console.log('posting', data);
+    // response.redirect('/')
   })
   .catch(function(err) {
     console.error(err)

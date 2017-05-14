@@ -1,6 +1,8 @@
 'use strict'
 
-$(pageLoad)
+$(function(){
+  pageLoad();
+})
 
 $('#user-form').on('submit', function(e) {
   e.preventDefault()
