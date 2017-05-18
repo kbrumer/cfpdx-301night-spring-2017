@@ -16,8 +16,8 @@ const doctors = [
 ];
 
 // `.filter()` => returns a new array of values based on conditional return statement
-let filteredDocs = doctors.filter(doctor => doctor.number > 10) // => Returns a new array of doctors; only those with a `number` value greater than 10
-console.log(filteredDocs)
+// let filteredDocs = doctors.filter(doctor => doctor.number > 10) // => Returns a new array of doctors; only those with a `number` value greater than 10
+// console.log(filteredDocs)
 
 
 // Define a filter callback, which can then be passed directly into .filter()
@@ -25,5 +25,38 @@ console.log(filteredDocs)
 function filterByEndDate(doctor) {
   return doctor.end > 2000
 }
-filteredDocs = doctors.filter(filterByEndDate)
-console.log(filteredDocs)
+
+// let filteredDocs = doctors.filter(filterByEndDate)
+// console.log(filteredDocs)
+
+// function filterByBest(doctor) {
+//   return doctor.end - doctor.begin >= 5;
+// }
+
+// let bestDoctors = doctors.filter(filterByBest)
+// console.log(bestDoctors)
+
+function yearsServed(doctor){
+  return (doctor.end - doctor.begin + 1);
+};
+
+// let years = doctors.map(doctor => yearsServed(doctor));
+// console.log('years=', years);
+let totes = doctors
+  .filter(doctor => yearsServed(doctor) > 1)
+  .map(doctor => yearsServed(doctor))
+  .reduce((acc, y) => acc + y, 0);
+
+let df = doctors
+  .filter(doctor => yearsServed(doctor) > 1);
+
+let dm = doctors
+  .map(doctor => yearsServed(doctor));
+
+console.log('drs mapped=', dm);
+console.log('drs filtered=', df);
+
+
+let totalYears = doctors.reduce((acc, doctor) => acc + yearsServed(doctor), 0);
+console.log('total years =', totalYears);
+

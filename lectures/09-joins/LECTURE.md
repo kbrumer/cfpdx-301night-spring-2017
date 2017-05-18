@@ -1,6 +1,6 @@
-# Announcements - Tue May 9th
+# Announcements - Sun May 14th
 
-## Code 301: SQL- Lecture (8th Topic)
+## Code 301: JOINS - Lecture (Topic 9)
 
 ### Get your reviews in
 
@@ -12,23 +12,26 @@
 * May 17th: Lab 10 Functional (May 18th will be co-working day)
 * May 22nd (Monday: Lecture 12: REST
 * May 23rd (Tuesday): Lab 12: REST
-* I will be out May 25th, the thursday of that week
+* I will be out May 25th, the Thursday of that week
+
+We are at the Midway point for this class !!
 
 # Review
 
 
 ## Learning Objectives
 
-- Understand the basic concepts of a database
-- Effectively use basic SQL commands to create, read, update, and delete rows from a table
+- Understand how objects in a database can be interrelated with foreign keys
+- Have familiarity with queries using SQL that select data from across multiple tables
+- Have familiarity with different relationships in database tables
 
 ---
 
 ## Resources
 
-[SQL Syntax Cheatsheet](cheatsheets/sql.md)
-[PostgreSQL Shell Cheatsheet](cheatsheets/postgress-shell.md)
-
+- [SQLBolt](http://sqlbolt.com/) -- Interactive SQL Tutorial
+- [SQL Cheat Sheet](http://www.cheat-sheets.org/sites/sql.su/)
+- [Query String Primer](https://en.wikipedia.org/wiki/Query_string)
 
 
 ---
@@ -134,6 +137,91 @@ INSERT INTO teachers VALUES
 (9012, 'Stepp');
 ```
 
+Getting our values:
+
+```sql
+-- SELECT students and grades, no explicit join
+SELECT *
+ FROM students, grades
+WHERE students.id = grades.student_id
+
+-- SELECT students and grades, join
+SELECT *
+  FROM students
+  JOIN grades ON grades.student_id = students.id
+
+-- SELECT students and grades, inner join
+SELECT *
+  FROM students
+ INNER JOIN grades ON grades.student_id = students.id
+
+-- SELECT students and grades, inner join using alias
+SELECT *
+  FROM students AS s
+ INNER JOIN grades AS g ON g.student_id = s.id
+
+-- SELECT specifc columns from students and grades, inner join using alias
+SELECT s.id
+     , s.name
+     , s.email
+     , g.course_id
+     , g.grade
+  FROM students AS s
+ INNER JOIN grades AS g ON g.student_id = s.id
+
+-- select from students, grades and courses
+SELECT s.id
+     , s.name
+     , s.email
+     , g.course_id
+     , g.grade
+  FROM students AS s
+ INNER JOIN grades AS g ON g.student_id = s.id
+ INNER JOIN courses AS c ON c.id = g.course_id
+
+-- select from students, grades and courses, labelling all columns explicitly
+SELECT s.id AS student_id
+     , s.name AS student_name
+     , s.email AS student_email
+     , g.course_id AS course_id
+     , g.grade AS course_grade
+     , c.name AS course_name
+  FROM students AS s
+ INNER JOIN grades AS g ON g.student_id = s.id
+ INNER JOIN courses AS c ON c.id = g.course_id
+
+
+-- select from students, grades, courses and teachers, labelling all columns explicitly
+SELECT s.id AS student_id
+     , s.name AS student_name
+     , s.email AS student_email
+     , g.course_id AS course_id
+     , g.grade AS course_grade
+     , c.name AS course_name
+     , t.name AS teacher_name
+  FROM students AS s
+ INNER JOIN grades AS g ON g.student_id = s.id
+ INNER JOIN courses AS c ON c.id = g.course_id
+ INNER JOIN teachers AS t on t.id = c.teacher_id
+
+
+INSERT INTO students VALUES (999, 'Nelson', 'nelson@fox.com', 'newton');
+
+SELECT s.id AS student_id
+     , s.name AS student_name
+     , s.email AS student_email
+     , g.course_id AS course_id
+     , g.grade AS course_grade
+     , c.name AS course_name
+     , t.name AS teacher_name
+  FROM students AS s
+  LEFT OUTER JOIN grades AS g ON g.student_id = s.id
+  LEFT OUTER JOIN courses AS c ON c.id = g.course_id
+  LEFT OUTER JOIN teachers AS t on t.id = c.teacher_id
+
+```
+
+
 
 
 # Pair Programming
@@ -141,33 +229,41 @@ INSERT INTO teachers VALUES
 ### Some prerequisite knowledge
 
 * Github link for tonight's lab:
-	* [https://github.com/cfpdx-301night-spring-2017/08-sql-intro](https://github.com/cfpdx-301night-spring-2017/08-sql-intro)
+  * [https://github.com/cfpdx-301night-spring-2017/09-sql-joins-relations](https://github.com/cfpdx-301night-spring-2017/09-sql-joins-relations)
 
 ---
 
-## Feature Tasks
-<!-- a list or description of the feature tasks you want the students to implement -->
-1. Study each of the new routes in your `server.js` file by examining the SQL statements and any associated data being handed through the request.
-  * You may test each of these routes, by utilizing the corresponding Article prototype methods in the `article.js` file.
-  * For example, the `app.post()` route in `server.js` corresponds to the `Article.prototype.insertRecord()` method in `article.js`. You can create a new Article object and call that method on it from the browser console. You can then check your Postgres DB to confirm that it exists in the DB. It will also render to the page upon refreshing the browser.
 
-```javascript
-    // In the browser console
-    let myArticle = new Article({title:'Flibbity goes Jibbiting', author:'Flibbity Jibbit', authorUrl:'flibbity.jibbit.com', category:'jibbits', publishedOn:'01-01-2217', body:'Flibbity Jibbit and the Key Keeper'});
+## Getting started (DO THIS AFTER CLONING YOUR FORK)
+1. `cd starter-code` to change dirs to the starter code directory
+2. **You will need to drop the table that we created yesterday in Postgres!**
+  * To do so, start Postgres in the terminal using the `psql` command
+  * Once you're in the Postgres shell, enter `DROP TABLE articles;` to remove the table from your local DB
+  * Enter `\dt` in your Postgres shell, and it should return "No relations found"; if it shows that the "articles" table still exists, or does nothing, then you probably forgot the semicolon in the previous step. If so, enter one now, ignore the complaints, and redo the `DROP TABLE articles;`
+  * Leave the shell open so you can check on your new tables in the upcoming setup steps!
+3. In your Postgres shell:
+  * Run `select count(*) from articles;`
+    * The output should read that you now have 250 records in the articles table.
+  * Then run `select * from authors;`
+    * The output should read each of the five author records to your with their respective data
 
-    myArticle.insertRecord();
+You're ready to go!
 
-    Refresh the page and you will see the new article at the top of the blog, plus the relevant information populated into the author and category filters.
-```
+## User Stories: MVP
+ - As a developer, I want article data to persist with SQL, so that I can store more, faster and have more query flexibility.
 
-2. For each of the NOTE items in `server.js`, provide a brief description of what that function immediately below is doing. Be sure to indicate, where applicable, details such as:
-  - What number(s) of the full-stack-diagram.png image is this part of the code interacting with?
-  - Which method of `article.js` is interacting with this particular piece of `server.js`?
-  - What part of ***CRUD*** is being enacted/managed by this particular piece of code?
-  - As applicable, an additional sentence or two of explanation about what the code is doing, what NPM packages are involved, etc. The goal is to demonstrate that you understand what is going on in the code without glossing over details, but also without writing a novel about it.
+This means you'll want to be able to do full CRUD on articles in the database. You'll have to use SQL to make a table for articles (**and clear out the table for troubleshooting**), with a class-level method attached to the constructor function (because it does not apply to any single instance). Then teach each article instance how to write or update itself to the database, or delete itself, via instance methods (available for use as needed in the code).
+
+Crucially, you'll need to trace through the app logic, and all those callback functions to determine WHEN is the right time to load data, or convert JSON.
+
+Look through the TODOs, which signify areas of the code with varying levels of completeness, and focus initially on writing correct SQL. Practice in the web inspector.
+
 
 ---
 
+# Portfolio Assignment
+
+This is no portfolio assignment for this class.
 
 
 # Questions?

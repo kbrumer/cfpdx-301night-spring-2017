@@ -17,14 +17,14 @@ const doctors = [
 
 
 // `.map()` => returns a new array of values, which have been manipulated in some way
-let mappedDocs = doctors.map(doctor => {
-  return {
-    number: doctor.number,
-    name: doctor.actor.split(' '),
-    yearsPlayed: (doctor.end - doctor.begin) + 1
-  }
-}) // => Returns a new array of doctors; each new object has a number, name, and yearsPlayed prop with pass-thru or new values
-console.log(mappedDocs)
+// let mappedDocs = doctors.map(doctor => {
+//   return {
+//     number: doctor.number,
+//     name: doctor.actor.split(' '),
+//     yearsPlayed: (doctor.end - doctor.begin) + 1
+//   }
+// }) // => Returns a new array of doctors; each new object has a number, name, and yearsPlayed prop with pass-thru or new values
+// console.log(mappedDocs)
 
 // map and filter chain
 let anotherMappedDocs = doctors.map(doctor => {

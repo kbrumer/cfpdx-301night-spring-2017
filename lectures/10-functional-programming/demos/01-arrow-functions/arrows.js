@@ -4,7 +4,8 @@
 //   console.log('hello world')
 // }
 
-let foo = () => console.log('hello world')
+let foo = () => console.log('hello world');
+
 // no params, empty parens required
 // return is implicit on one liner
 // no curly brackets required on one liner

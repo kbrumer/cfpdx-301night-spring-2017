@@ -19,17 +19,15 @@ const doctors = [
 // `.reduce()` => returns a new value; defaulting to integer values, but can also be a new array of values
 var arr = [34, 55, 3, 23, 12, 7, 99]
 
-let sumArray = arr.reduce((acc, current) => acc + current)
-console.log(sumArray)
+// let sumArray = arr.reduce((acc, current) => acc + current)
+// console.log(sumArray)
 // => returns the total sum of the array, 233 (default accumulator is `0`)
 
-let sumArrayPlusOne = arr.reduce((acc, current) => acc + current, 1)
-console.log(sumArrayPlusOne)
+// let sumArrayPlusOne = arr.reduce((acc, current) => acc + current, 1)
+// console.log(sumArrayPlusOne)
 // => returns the total sum of the array from the starting value, 234 (accumulator is `1`)
 
-
-// Below passes an array as the accumulator.
-let newArr = doctors.reduce((acc, curr) => {
+function pushGreaterThanTen(acc, curr){
   if (curr.number > 10) {
     acc.push({
       number: curr.number,
@@ -37,6 +35,12 @@ let newArr = doctors.reduce((acc, curr) => {
       yearsPlayed: (curr.end - curr.begin) + 1
     })
   }
+  return acc;
+}
+
+// Below passes an array as the accumulator.
+let newArr = doctors.reduce((acc, curr) => {
+  acc = pushGreaterThanTen(acc, curr)
   return acc
 }, [])
 // .filter()

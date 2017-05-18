@@ -1,5 +1,8 @@
 'use strict';
 
+var module = {};
+console.log(module);
+
 // REVIEW: IIFE module pattern for creating local scope within the file, and
 // handling data back out to a higher level of scope
 (function(module) {
@@ -16,4 +19,8 @@
 
   module.articleView = articleView
 
-})(window)
+})(window);
+
+console.log(module);
+
+
