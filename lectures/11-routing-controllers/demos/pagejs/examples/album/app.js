@@ -9,7 +9,7 @@ page('*', notfound);
 page();
 
 function photos(ctx) {
-  var page = ~~ctx.params.page;
+  var page = parseInt(ctx.params.page, 10);
   var from = page * perPage;
   var to = from + perPage;
   console.log('showing page %s : %s..%s', page, from, to);
