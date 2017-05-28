@@ -1,4 +1,4 @@
-# Announcements - Mon May 22th
+# Announcements - Tue May 23th
 
 ## Code 301: REST and APIs - Lecture (Topic 12)
 
